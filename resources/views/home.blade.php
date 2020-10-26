@@ -15,6 +15,8 @@
                     @endif
 
                     <p>Aquí podrás establecer como quieras tu sistema.</p>
+                    <a href="{{route('forum_index')}}">Acceder</a>
+                    <a href="{{route('forum_create')}}">Formulario </a>
                 </div>
             </div>
         </div>
