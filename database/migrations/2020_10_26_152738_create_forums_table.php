@@ -16,7 +16,13 @@ class CreateForumsTable extends Migration
         Schema::create('forums', function (Blueprint $table) {
             $table->id();
             $table->string('forum_name');
-            $table->text('forum_description');
+            $table->text('forum_description')->nullable(); //nullable es para definir que el campo puede ser nulo en BD
+            $table->foreignId('user_id')->constrained('users'); //el usuario que creó el foro
+           // $table->foreignId('comment_id')->constrained('comments'); 
+            //commentid ¿por qué lo llaman en forums? 
+            //Foro foro prueba  - comentarios  tiene 
+            // tabla muchos a muchos
+            // foro id 1 - comment id 1 
             $table->timestamps();
         });
     }

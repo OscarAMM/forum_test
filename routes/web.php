@@ -23,4 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/forum/index', 'ForumController@index')->name('forum_index');
 Route::get('/forum/create', 'ForumController@create')->name('forum_create');
 Route::post('/forum/store', 'ForumController@store')->name('forum_store');
+//nuevas rutas
+Route::get('/forum/comments', 'CommentController@view_comments')->name('forum_comments');
+Route::get('/forum/show/{id}', 'ForumController@show')->name('forum_show');
 

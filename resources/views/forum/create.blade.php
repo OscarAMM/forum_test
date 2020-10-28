@@ -7,17 +7,23 @@
                 <div class="row">
                     @csrf
                     <div class="col-md-6">
-                        <label for="">Asunto</label>
-                        <input type="text" name="forum_name" class="form-control">
+                        <label for="forum_name">Asunto</label>
+                        <input type="text" name="forum_name" id="forum_name" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <label for="">Descripción</label>
-                        <textarea name="forum_description" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <label for="description">Descripción</label>
+                        <textarea name="forum_description" id="description" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+                    {{--Pueden utilizar un href o con js cualquiera esto es un comentario --}}
+                
                 </div>
             </form>
+            
         </div>
     </div>
 </div>
+
+
+
 @endsection
