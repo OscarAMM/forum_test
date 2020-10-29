@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
-    //
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,6 +24,11 @@ class ForumController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            //'user_id' =>'required',
+            'forum_name' => 'required',
+            'forum_description' => 'required',
+        ]);
         $forum = new Forum();
         $forum->forum_name = $request->forum_name;
         $forum->forum_description = $request->forum_description;
@@ -38,18 +43,27 @@ class ForumController extends Controller
     }
     public function update(Request $request, $id)
     {
-        //
+        $forum = Forum::findOrFail($id);
+        $request->validate([
+            'forum_name' => 'required',
+            'forum_description' => 'required',
+        ]);
+        $forum->forum_name = $request->forum_name;
+        $forum->forum_description = $request->forum_description;
+        $forum->user_id = Auth::user()->id;
+        $forum->update();
+        return redirect()->route('forum_index');
     }
     public function show($id)
     {
         $forum = Forum::findOrFail($id); //permite buscar objetos o datos por id findOrFail es la función que trae para realizar búsquedas
         return view('forum.show', compact('forum'));
     }
-    public function delete()
+    public function delete($id)
     {
+        $forum = Forum::findOrFail($id);
+        $forum->delete();
+        return redirect()->route('forum_index');
+    }
 
-    }
-    public function search()
-    {
-    }
 }
