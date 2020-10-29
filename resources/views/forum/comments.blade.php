@@ -5,9 +5,13 @@
         <div class="card-body">
 
 
+            @foreach($comment as $comments)
+            <li class="list-group-item">
+            
+            </li>
+            @endforeach
+
         </div>
-
     </div>
-
 </div>
 @endsection

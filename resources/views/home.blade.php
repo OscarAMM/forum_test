@@ -3,14 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">{{ __('Capacitación Laravel 7.*') }}</div>
                 <div class="card-body">
-                   
-                    <p>Aquí podrás establecer como quieras tu sistema.</p>
-                    <a href="{{route('forum_index')}}">Acceder</a>
-                    <a href="{{route('forum_create')}}">Formulario </a>
+                    <h4 class="card-title">Foro</h4>
+                    <p class="small">Sección que listan los foros registrados en el sistema</p>
+                    <a href="{{route('forum_index')}}" class="btn btn-sm btn-primary">Acceder</a>
                 </div>
             </div>
         </div>

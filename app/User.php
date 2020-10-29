@@ -39,6 +39,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function forum(){
-        return $this->belongsToMany(Forum::class);
+        return $this->hasMany(Forum::class);
     }
+    //Juan-Cosme
+    public function comment(){
+        return $this->hasMany(comment::class);
+    }
+  
 }
