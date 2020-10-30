@@ -15,6 +15,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Usuarios</h4>
+                    <p class="small">Sección que listan los usuarios registrados en el sistema</p>
+                    <a href="{{route('user_index')}}" class="btn btn-sm btn-primary">Acceder</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

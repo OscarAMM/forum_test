@@ -4,6 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <h2 class="font-weight-bold card-title text-center">Foros creados</h2>
+            <a href="{{route('forum_create')}}">Acceder</a>
             <p class="lead text-center">Lista de foros registrados</p>
             <div class="card shadow">
                 <div class="card-body">

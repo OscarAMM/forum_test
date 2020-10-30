@@ -26,7 +26,7 @@ class CommentController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->forum_id =$request->forum;
         $comment->save();
-        dd($comment);
+        //dd($comment);
         return back();
     }
 

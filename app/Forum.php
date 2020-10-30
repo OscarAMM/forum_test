@@ -15,6 +15,11 @@ class Forum extends Model
     //Rodrigo-Kenn
     public function comment()
     {
-        return $this->hasMany(comment::class);
+        return $this->hasMany(comment::class); 
     }
+     //belongsToMany (muchos a muchos)
+     //belongsTo (uno a muchoo)
+     //hasMany(muchos a uno)
+     //hasOne (uno a uno)
+
 }

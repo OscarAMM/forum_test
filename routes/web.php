@@ -31,3 +31,11 @@ Route::put('/forum/update/{id}', 'ForumController@update')->name('forum_update')
 
 //comment routes
 Route::post('/comment/store', 'CommentController@store')->name('comment_store');
+
+//User routes
+Route::get('/register/index', 'UserController@index')->name('user_index');
+Route::get('/register/create', 'UserController@create')->name('user_create');
+Route::get('/register/edit/{id}', 'UserController@edit')->name('user_edit');
+Route::get('/register/show/{id}', 'UserController@show')->name('user_show');
+Route::post('/register/store', 'UserController@store')->name('user_store');
+Route::put('/register/update/{id}', 'UserController@update')->name('user_update');

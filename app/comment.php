@@ -13,6 +13,5 @@ class comment extends Model
     //Rodrigo-Kenn
     public function forum(){
         return $this->belongsTo(comment::class);
-
     }
 }
