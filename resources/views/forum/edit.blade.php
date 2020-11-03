@@ -12,6 +12,18 @@
                         <input type="text" name="forum_name" id="forum_name" class="form-control" value="{{$forum->forum_name}}">
                     </div>
                     <div class="col-md-6">
+                        <label for="">Usuarios asignados</label>
+                        @foreach($users as $user)
+                        <div class="form-check">
+                            <input class="form-check-input" name="users[]" type="checkbox" value="{{$user->id}}" id="user-{{$user->id}}" {{$user->hasForum($forum->id) ? 'checked': ''}}>
+                            <label class="form-check-label" for="user-{{$user->id}}">
+                                {{$user->name}}
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
+                    
+                    <div class="col-md-12">
                         <label for="description">Descripción</label>
                         <textarea name="forum_description" id="description" cols="30" rows="10" class="form-control" value="{{$forum->forum_description}}">{{$forum->forum_description}}</textarea>
                     </div>

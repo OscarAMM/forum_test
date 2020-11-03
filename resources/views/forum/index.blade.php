@@ -3,9 +3,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h2 class="font-weight-bold card-title text-center">Foros creados</h2>
-            <a href="{{route('forum_create')}}">Acceder</a>
-            <p class="lead text-center">Lista de foros registrados</p>
+            <div class="text-center">
+                <h2 class="font-weight-bold card-title text-center">Foros creados</h2>
+                <p class="lead">Lista de foros registrados</p>
+                <div class="btn-group mb-2">
+                    <a href="{{route('home')}}" class="btn btn-sm btn-primary">Regresar</a>
+                    <a href="{{route('forum_create')}}" class="btn btn-sm btn-primary ">Acceder</a>
+                </div>
+            </div>
             <div class="card shadow">
                 <div class="card-body">
                     <ul class="list-group">

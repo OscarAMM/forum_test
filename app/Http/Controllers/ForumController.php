@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Forum;
 use Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -20,7 +21,8 @@ class ForumController extends Controller
     }
     public function create()
     {
-        return view('forum.create');
+        $users = User::all();
+        return view('forum.create', compact('users'));
     }
     public function store(Request $request)
     {
@@ -32,14 +34,21 @@ class ForumController extends Controller
         $forum = new Forum();
         $forum->forum_name = $request->forum_name;
         $forum->forum_description = $request->forum_description;
-        $forum->user_id = Auth::user()->id;
+        $forum->user_name = Auth::user()->name;
+        //$forum->user_id = Auth::user()->id;
+        $users = $request->users;
         $forum->save();
+        foreach($users as $user){
+            $forum->users()->attach(User::where('id', $user)->first());
+            $forum->save();
+        }
         return redirect()->route('forum_index'); //redirect -> redirige a la ruta especificada
     }
     public function edit($id)
     {
         $forum = Forum::findOrFail($id); //permite buscar objetos o datos por id findOrFail es la función que trae para realizar búsquedas
-        return view('forum.edit', compact('forum')); //compact es lo mismo que un arreglo
+        $users = User::orderBy('id', 'desc')->get();   
+        return view('forum.edit', compact('forum', 'users')); //compact es lo mismo que un arreglo
     }
     public function update(Request $request, $id)
     {
@@ -50,13 +59,22 @@ class ForumController extends Controller
         ]);
         $forum->forum_name = $request->forum_name;
         $forum->forum_description = $request->forum_description;
-        $forum->user_id = Auth::user()->id;
+        $forum->user_name = Auth::user()->name;
+        //$forum->user_id = Auth::user()->id;
+        $users = $request->users;
         $forum->update();
+
+        $forum->users()->detach();
+        foreach($users as $user){
+            $forum->users()->attach(User::where('id', $user)->first());
+            $forum->save();
+        }
         return redirect()->route('forum_index');
     }
     public function show($id)
     {
         $forum = Forum::findOrFail($id); //permite buscar objetos o datos por id findOrFail es la función que trae para realizar búsquedas
+        
         return view('forum.show', compact('forum'));
     }
     public function delete($id)

@@ -17,8 +17,9 @@ class CreateForumsTable extends Migration
             $table->id();
             $table->string('forum_name');
             $table->text('forum_description')->nullable(); //nullable es para definir que el campo puede ser nulo en BD
-            $table->foreignId('user_id')->constrained('users'); //el usuario que creó el foro
-           // $table->foreignId('comment_id')->constrained('comments'); 
+            $table->string('user_name');
+            //$table->foreignId('user_id')->constrained('users'); //el usuario que creó el foro
+            // $table->foreignId('comment_id')->constrained('comments'); 
             //commentid ¿por qué lo llaman en forums? 
             //Foro foro prueba  - comentarios  tiene 
             // tabla muchos a muchos

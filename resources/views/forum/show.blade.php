@@ -11,6 +11,12 @@
                             <p class="card-text">{{$forum->forum_name}}</p>
                         </div>
                         <div class="col-md-6">
+                            <p class="lead font-weight-bold">Usuarios registrados</p>
+                            @foreach($forum->users as $user)
+                            <p class="card-text">{{$user->name}}</p>
+                            @endforeach
+                        </div>
+                        <div class="col-md-6">
                             <p class="lead font-weight-bold">Descripción de foro</p>
                             <p class="card-text">{{$forum->forum_description}}</p>
                         </div>
@@ -37,6 +43,7 @@
                     </div>
                 </div>
             </div>
+<!--Aqui va una cosa-->
             <div class="row">
                 <div class="col-md-12">
                     @foreach($forum->comment as $row)
@@ -45,6 +52,7 @@
                     @endforeach
                 </div>
             </div>
+       <!--Aqui termina otra cosa-->    
         </div>
     </div>
 </div>

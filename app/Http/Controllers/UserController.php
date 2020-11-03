@@ -95,7 +95,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password) {
-            $user->passsword = bcrypt($request->password);
+            $user->password = bcrypt($request->password);
         }
         //$user->user_id = Auth::user()->id;
         $user->update();

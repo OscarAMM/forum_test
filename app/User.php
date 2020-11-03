@@ -38,12 +38,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /*
     public function forum(){
         return $this->hasMany(Forum::class);
+    }**/
+    public function forums(){
+        return $this->belongsToMany(Forum::class)->withTimestamps();
     }
     //Juan-Cosme
     public function comment(){
         return $this->hasMany(comment::class);
     }
-  
+    public function hasForum($id){
+        if($this->forums()->where('forum_id', $id)->first()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

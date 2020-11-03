@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="jumbotron">
-        <h2 class="text-center">Sistema de foros</h2>
+    <div class="jumbotron text-center">
+        <h2 class="font-weight-bold">Sistema de foros</h2>
+        <p class="lead">Proyecto de capacitación de laravel para servicio social</p>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
