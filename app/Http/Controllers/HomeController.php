@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(Auth::user()->hasRole('Administrator')){
+            return view('home');
+        }else{
+            $user = Auth::user();
+            return view('forum.index', compact('user'));
+        }      
     }
 }

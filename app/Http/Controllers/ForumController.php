@@ -17,11 +17,12 @@ class ForumController extends Controller
     public function index()
     {
         $forum = Forum::all();
-        return view('forum.index', compact('forum'));
+        $user = Auth::user();
+        return view('forum.index', compact('forum', 'user'));
     }
     public function create()
     {
-        $users = User::all();
+        $users = User::where('id', '<>', Auth::user()->id)->get();
         return view('forum.create', compact('users'));
     }
     public function store(Request $request)
@@ -38,6 +39,7 @@ class ForumController extends Controller
         //$forum->user_id = Auth::user()->id;
         $users = $request->users;
         $forum->save();
+        $forum->users()->attach(User::where('id', Auth::user()->id)->first());
         foreach($users as $user){
             $forum->users()->attach(User::where('id', $user)->first());
             $forum->save();
@@ -63,8 +65,9 @@ class ForumController extends Controller
         //$forum->user_id = Auth::user()->id;
         $users = $request->users;
         $forum->update();
-
         $forum->users()->detach();
+        
+        $forum->users()->attach(User::where('id', Auth::user()->id)->first());
         foreach($users as $user){
             $forum->users()->attach(User::where('id', $user)->first());
             $forum->save();

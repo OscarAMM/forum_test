@@ -17,8 +17,22 @@
                         <label for="user_password">Contraseña</label>
                         <input type="password" name="password" id="user_password" class="form-control">
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="roles">Perfiles</label>
+                        <select name="roles" id="roles" class="form-control">
+                            <option value="">Seleccione un perfil</option>
+                            @foreach($roles as $role)
+                            <option value="{{$role->name}}">{{$role->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6">
                         <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>

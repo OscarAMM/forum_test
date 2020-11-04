@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -26,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('register.create');
+        $roles = Role::all();
+        return view('register.create', compact('roles'));
     }
 
     /**
@@ -47,8 +49,9 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $roles = $request->roles;
         $user->save();
-        $user->assignRole('User');
+        $user->assignRole($roles);
         return redirect()->route('user_index');
     }
 
@@ -74,7 +77,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('register.edit', compact('user'));
+        $roles = Role::all();
+        return view('register.edit', compact('user', 'roles'));
     }
 
     /**
@@ -97,8 +101,11 @@ class UserController extends Controller
         if ($request->password) {
             $user->password = bcrypt($request->password);
         }
+        $roles = $request->roles;
+        $user->roles()->detach();
         //$user->user_id = Auth::user()->id;
         $user->update();
+        $user->assignRole($roles);
         return redirect()->route('user_index');
     }
 

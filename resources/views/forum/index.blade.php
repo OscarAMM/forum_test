@@ -11,6 +11,7 @@
                     <a href="{{route('forum_create')}}" class="btn btn-sm btn-primary ">Acceder</a>
                 </div>
             </div>
+            @if(Auth::user()->hasRole('Administrator'))
             <div class="card shadow">
                 <div class="card-body">
                     <ul class="list-group">
@@ -27,6 +28,24 @@
                     </ul>
                 </div>
             </div>
+            @elseif(Auth::user()->hasRole('User'))
+            <div class="card shadow">
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach($user->forums as $single_forum)
+                        <li class="list-group-item">
+                            <a href="{{route('forum_show', $single_forum->id)}}" id="{{$single_forum->id}}">
+                                <p class="lead">{{$single_forum->forum_name}}</p>
+                            </a>
+                            <span class="small">{{$single_forum->forum_description}}</span>
+                            {{--a -> link button:submit formularios para subir datos--}}
+                            <a href="{{route('forum_edit', $single_forum->id )}}" class="btn btn-sm btn-link">Editar</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>
